@@ -8,6 +8,7 @@
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
     if (i < 0 || e.repeat) return;
+    if (down.has(i)) return;
     down.add(i);
     noteOn(BASE + i);
   }
