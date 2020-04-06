@@ -4,6 +4,9 @@
   const KEYS = 'awsedftgyhujkolp;'.split('');
   const BASE = 60;
   const down = new Set();
+  import { settings } from './synth.js';
+  let wave = settings.wave;
+  $: settings.wave = wave;
 
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
@@ -26,6 +29,14 @@
 <main>
   <h1>svelte-synth</h1>
   <p>Play with a-p on the home row.</p>
+  <label>Wave
+    <select bind:value={wave}>
+      <option>sine</option>
+      <option>square</option>
+      <option>sawtooth</option>
+      <option>triangle</option>
+    </select>
+  </label>
 </main>
 
 <style>
