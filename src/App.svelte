@@ -7,6 +7,7 @@
   import { settings } from './synth.js';
   let wave = settings.wave;
   $: settings.wave = wave;
+  let cutoff = 2000;
 
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
@@ -36,6 +37,9 @@
       <option>sawtooth</option>
       <option>triangle</option>
     </select>
+  </label>
+  <label>Cutoff
+    <input type="range" min="100" max="8000" bind:value={cutoff}>
   </label>
 </main>
 
