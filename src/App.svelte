@@ -8,6 +8,7 @@
   let wave = settings.wave;
   $: settings.wave = wave;
   let cutoff = 2000;
+  let delayMix = 0.25;
 
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
@@ -40,6 +41,9 @@
   </label>
   <label>Cutoff
     <input type="range" min="100" max="8000" bind:value={cutoff}>
+  </label>
+  <label>Delay mix
+    <input type="range" min="0" max="1" step="0.05" bind:value={delayMix}>
   </label>
 </main>
 

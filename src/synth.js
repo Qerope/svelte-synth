@@ -8,6 +8,7 @@ export function midiToFreq(n) {
 const voices = new Map();
 
 let out;
+let fx;
 
 export function noteOff(note) {
   const v = voices.get(note);
