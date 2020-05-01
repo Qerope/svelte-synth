@@ -14,10 +14,10 @@ export function noteOff(note) {
   const v = voices.get(note);
   if (!v) return;
   const ctx = audio();
-  const rel = settings.release;
-  v.gain.gain.cancelScheduledValues(ctx.currentTime);
-  v.gain.gain.setValueAtTime(v.gain.gain.value, ctx.currentTime);
-  v.gain.gain.linearRampToValueAtTime(0, ctx.currentTime + rel);
-  setTimeout(() => v.osc.stop(), rel * 1000);
+  const t = ctx.currentTime;
+  v.gain.gain.cancelScheduledValues(t);
+  v.gain.gain.setValueAtTime(v.gain.gain.value, t);
+  v.gain.gain.linearRampToValueAtTime(0, t + settings.release);
+  v.osc.stop(t + settings.release + 0.05);
   voices.delete(note);
 }
