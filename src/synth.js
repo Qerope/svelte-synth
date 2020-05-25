@@ -9,6 +9,16 @@ const voices = new Map();
 
 let out;
 let fx;
+let scope;
+
+export function analyser() {
+  if (!scope) {
+    scope = audio().createAnalyser();
+    scope.fftSize = 1024;
+    scope.connect(audio().destination);
+  }
+  return scope;
+}
 
 export function noteOff(note) {
   const v = voices.get(note);

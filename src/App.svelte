@@ -13,6 +13,7 @@
   import { initMidi } from './midi.js';
   let midiOk = false;
   onMount(async () => { midiOk = await initMidi(); });
+  import Scope from './Scope.svelte';
 
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
@@ -50,6 +51,7 @@
     <input type="range" min="0" max="1" step="0.05" bind:value={delayMix}>
   </label>
   <p>{midiOk ? 'MIDI input connected' : 'No MIDI input'}</p>
+  <Scope />
 </main>
 
 <style>
