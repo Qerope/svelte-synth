@@ -9,11 +9,15 @@
   $: settings.wave = wave;
   let cutoff = 2000;
   let delayMix = 0.25;
-  import { onMount } from 'svelte';
   import { initMidi } from './midi.js';
   let midiOk = false;
   onMount(async () => { midiOk = await initMidi(); });
   import Scope from './Scope.svelte';
+  onMount(() => {
+    const saved = JSON.parse(localStorage.getItem('synth') || '{}');
+    if (saved.wave) wave = saved.wave;
+  });
+  $: localStorage.setItem('synth', JSON.stringify({ wave }));
 
   function onKeyDown(e) {
     const i = KEYS.indexOf(e.key);
